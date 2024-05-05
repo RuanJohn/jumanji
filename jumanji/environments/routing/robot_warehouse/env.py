@@ -305,7 +305,9 @@ class RobotWarehouse(Environment[State]):
         # construct timestep and check environment termination
         steps = state.step_count + 1
         horizon_reached = steps >= self.time_limit
-        done = collision | horizon_reached
+        # done = collision | horizon_reached
+        # Simplified the termination condition to ignore collisions
+        done = horizon_reached
 
         # compute next observation
         agents_view = self._make_observations(grid, agents, shelves)
